@@ -42,11 +42,26 @@
 
 요청에 특화
 
-axios.get('url') //프로미스리턴
+```javascript
+const request = new XMLHttpRequest() //생성하고
+const url = 'http://~~'	// 데이터를 얻어올 url
 
-​	.then()
+request.open('GET',url) // 데이터를 준비하고
+request.send()	// 요청보내기
 
-​	.catch
+const data = request.response// 받은응답
+console.log(data) //근데 응답안온채로 출력한거라 아무것도안뜸 (스레드가 한개라)
+```
+
+```javascript
+axios.get(url) //프로미스리턴
+    .then(function (response){
+    console.log(data)
+})
+    .catch() // 이렇게 깔끔해짐
+```
+
+
 
 
 
