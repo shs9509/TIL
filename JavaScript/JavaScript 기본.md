@@ -362,3 +362,98 @@ const  상수값이라는뜻 변하지않는다!!
 
     
 
+----------------
+
+
+
+## :package: 객체
+
+프로그램에서 인식할수있는 모든대상
+
+자바스크립트에서 객체는 참조형태로 사용 -> 인스턴스의 형태로 사용
+
+객체를 기반으로 해서 인스턴스를 계속 만들어내는 것 + 식별자를 붙여서 사용
+
+
+
+인스턴스 만들기
+
+new  객체명
+
+```js
+var now = new Date();
+document.write(now);
+```
+
+
+
+객체에는 프로퍼티 , 메서드가있음
+
+프로퍼티
+
+​	객체의 특징이나 속성을 나타냄
+
+메서드
+
+​	객체에서 할수있는 동작
+
+이것들 역시 인스턴스로 바꿔주자
+
+'.' 붙이고 그대로 쓰면됨
+
+```js
+var now = new Date();
+document.write(now.toLocaleString());
+```
+
+
+
+- Array 객체
+
+  만들기
+
+  ```js
+  var li = new Array();
+  var li = new Array(4); // 크기
+  var li = ["1","2","3","4"];
+  var li = Array("1","2","3","4");
+  
+  li.length // 길이
+  ```
+
+  참고 : https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
