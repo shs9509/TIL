@@ -421,13 +421,41 @@ document.write(now.toLocaleString());
   li.length // 길이
   ```
 
+  
+  
+  메서드
+  
+  ```js
+  concat()
+  join()
+  
+  push() // 뒤에 추가
+  unshift() // 앞에 추가
+  
+  pop() // 뒤에 꺼냄
+  shift() // 앞에 꺼냄
+  
+  splice(인덱스, 인덱스부터 삭제요소 개수, 삭제하고 추가할꺼) // 원하는 자리부터 삭제, 인수3개까지라면
+  
+  slice(n,m) // n부터 m-1(인수한개면 끝)까지 꺼내기 (기존 배열은 안바뀜)
+  ```
+  
   참고 : https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array
+  
+  - Date
+  - Math
+
+브라우저 관련객체
+
+팝업같은거
 
 
 
 
 
+문서객체모델 (DOM)
 
+자바스크립트를 이용하여 웹문서에 접근하고 제어할수있도록 객체를 사용해 웹문서를 체계적으로 정리하는 방법
 
 
 
