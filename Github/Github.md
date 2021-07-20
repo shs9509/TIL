@@ -151,3 +151,29 @@ git log --graph
 이런식으로 깃에 나타남 근데 왜 release는 반영 안되는가..
 
 ![image-20210716104023568](Github.assets/image-20210716104023568.png)
+
+
+
+## **git branch로의 업데이트**
+
+> git conflict 발생&해결 실습
+
+- A랑 B가 **같은 파일을 수정했을 때**
+
+  gitlab에서 A 브랜치 MR하고 B 브랜치 merge에서 충돌 발생
+
+  B 브랜치 로컬에서 master pull (gitlab에서 어떻게 하라고 나옴)
+
+  B 브랜치에서 push master
+
+  **A에서 작업한 내용 commit 해야함! (이거 진짜 중요!!)**
+
+  A에서 pull master
+
+  A에서 vscode에서 보면 양 쪽 수정사항이 다 보이고 어떤거 적용할지 선택 가능
+
+  둘다선택
+
+  A 브랜치에서 add/commit/push
+
+  둘 다 반영 ok
