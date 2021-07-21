@@ -45,3 +45,17 @@
 - https://www.strikingly.com/ 
 
 - https://www.canva.com/
+
+
+
+### 깃북
+
+https://prorice.gitbooks.io/gitbook/content/cooperation/
+
+
+
+### 파이어베이스
+
+https://www.latera.kr/blog/2020-01-02-using-fcm-in-vuejs/
+
+https://firebase.google.com/docs/cloud-messaging/js/client?hl=ko
