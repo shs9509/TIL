@@ -64,4 +64,21 @@ https://firebase.google.com/docs/cloud-messaging/js/client?hl=ko
 
 ###	STS
 
-https://yunyoung1819.tistory.com/95
+- annotaion process 적용 , 롬복 설치하기 
+
+  https://yunyoung1819.tistory.com/95
+
+### 디자인
+
+- 트렌디한 디자인 모음
+
+  https://codepen.io/trending
+
+
+
+### 도커
+
+- root 계정 이름 바꾸기 
+
+  https://louky0714.tistory.com/entry/MariaDB-Database-root-%EA%B3%84%EC%A0%95-%EC%9D%B4%EB%A6%84-%EB%B3%80%EA%B2%BD
+
