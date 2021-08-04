@@ -82,3 +82,19 @@ https://firebase.google.com/docs/cloud-messaging/js/client?hl=ko
 
   https://louky0714.tistory.com/entry/MariaDB-Database-root-%EA%B3%84%EC%A0%95-%EC%9D%B4%EB%A6%84-%EB%B3%80%EA%B2%BD
 
+
+
+### 데이터 시각화 API툴
+
+- 테이블형태
+
+  https://datatables.net/
+
+- 데이터 비주얼 차트
+
+  https://plotdb.com/
+
+- 데이터 비주얼
+
+  https://www.tableau.com/
+
