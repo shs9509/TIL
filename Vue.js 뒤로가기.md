@@ -96,7 +96,7 @@ Hierarchy Back 은 어디있을까 생각했는데  대표적으로 **iOS** UI�
 
 **history.back()** 을 사용하자(?)
 
-<img src="C:\Users\multicampus\AppData\Roaming\Typora\typora-user-images\image-20210805232940174.png" alt="image-20210805232940174" style="zoom: 80%;" />
+<img src="Vue/vue_asset/image-20210805232940174.png" alt="image-20210805232940174" style="zoom: 80%;" />
 
 ​								https://developer.mozilla.org/ko/docs/Web/API/History/back
 
@@ -110,13 +110,13 @@ Hierarchy Back 은 어디있을까 생각했는데  대표적으로 **iOS** UI�
 
   
 
-<img src="C:\Users\multicampus\AppData\Roaming\Typora\typora-user-images\image-20210805232707961.png" alt="image-20210805232707961" style="zoom: 80%;" />
+<img src="Vue/vue_asset/image-20210805232707961-1628406518553.png" alt="image-20210805232707961" style="zoom: 80%;" />
 
 ​							https://router.vuejs.org/kr/guide/essentials/navigation.html
 
 
 
-![image-20210805233145004](C:\Users\multicampus\AppData\Roaming\Typora\typora-user-images\image-20210805233145004.png)
+![image-20210805233145004](Vue/vue_asset/image-20210805233145004.png)
 
 
 

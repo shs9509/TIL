@@ -6,7 +6,7 @@
 
 
 
-![image-20210806041634988](C:\Users\multicampus\AppData\Roaming\Typora\typora-user-images\image-20210806041634988.png)
+![image-20210806041634988](Vue/vue_asset/image-20210806041634988.png)
 
 ```javascript
 <script>
