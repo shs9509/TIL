@@ -167,3 +167,4 @@ histoty.back(): https://developer.mozilla.org/ko/docs/Web/API/History/back
 ​	https://brunch.co.kr/@uxdesingercho/1
 
 ​	https://www.bottlehs.com/vue/vue-js-%ED%9E%88%EC%8A%A4%ED%86%A0%EB%A6%AC-%EA%B4%80%EB%A6%AC/
+
