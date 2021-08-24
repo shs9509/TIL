@@ -346,9 +346,103 @@ str.repeat(3);
 
 # :dagger:디스트럭처링
 
+디스트럭처리은 배열의 값이나 객체의 속성을 풀어서 별개의 변수로 사용하기 쉽게 만든다.
 
 
 
+- 객체 디스트럭처링 `{ }`
+
+```javascript
+const person = {
+    first:"신형식",
+    second:"아람즈",
+};
+//[기존] 객체에서 변수를 받는다
+const first = person.first;
+const second = person.second;
+
+//[ES6] 
+const {first,second} = person;
+const {first: f} = person.frist; // 변수의 이름 변경도 가능하다.
+const {first: f = "무명"} = person.frist; // 디폴트값 설정도 가능하다.
+console.log(f) // "신형식" 
+console.log(first)// 오류 (변경시 기존first는 변수명이아니다.)
+```
+
+
+
+- 배열 디스트럭처링 `[ ]`
+
+```javascript
+const person = ["신형식","27","shs950930@gmail.com"];
+const [name,age,email] = person;
+
+// 레스트 연산자를 사용해보자
+const [...shin]  = person;
+console.log(shin);
+// ["신형식","27","shs950930@gmail.com"]
+```
+
+
+
+- 변수교체
+
+```javascript
+let apple = "노랑";
+let banana = "빨강";
+
+[apple,banana] = [banana,apple]
+//이러면 교체됨
+```
+
+
+
+# :curly_loop: 루프
+
+ES6 에서는 새로운 유형의 루프인 `for of` 가 도입되었다.
+
+
+
+기존의 반복을 위해서는 `for` `for in`  같은 것을 썼다.
+
+`for of` 예시를 통해 다른점을 살펴보자
+
+```javascript
+const fruits =["apple", "banana", "mango", "watermelon"];
+
+for(const fruit of fruits){
+	console.log(fruit);
+}
+//apple
+//banana
+//mango
+//watermelon
+```
+
+바로 원소에 접근해서 나열이 가능하다.
+
+
+
+:thinking: 그럼 객체에 대한 반복은 똑같이 가능할까?
+
+```javascript
+const person ={
+	name:"신형식",
+	age:28,
+	email:"shs950930@gmail.com"
+};
+for(const stat of person){
+	console.log(stat);
+}
+
+//Uncaught TypeError: person is not iterable
+```
+
+안된다.
+
+그러면 필요한것이 `Object.keys()` 입니다.
+
+ 이를 통해서 key를 얻고 따로 key 에 맞는 value를 저장해서 출력합니다.
 
 
 
