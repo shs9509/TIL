@@ -444,7 +444,45 @@ for(const stat of person){
 
  이를 통해서 key를 얻고 따로 key 에 맞는 value를 저장해서 출력합니다.
 
+```javascript
+const person ={
+	name:"신형식",
+	age:28,
+	email:"shs950930@gmail.com"
+};
+for(const stat of Object.keys(person)){
+	const value = stat;
+    console.log(value ,person[value]);
+}
 
+```
+
+
+
+# :goal_net:배열 메서드
+
+ES6 에서 배열 메서드가 다수 도입되었다.
+
+
+
+- Array.from()
+  - 배열이 아닌것을 받아서 배열로 변환해서 반환해준다.
+- Array.of()
+  - 전달받은 인수를 배열로 생성한다.
+- Array.find()
+  - 조건에 충족되는 첫번째 원소를 반환한다.
+- Array.findIndex()
+  - 조건에 충족되는 첫번째 원소의 인덱스를 반환한다.
+- Array.some()
+  - 조건에 충족되는게 있는지 확인한다.
+- Array.every()
+  - 조건에 모든원소가 충족되는지 확인한다.
+
+
+
+# :red_car:스프레드 연산자와 레스트 매개변수
+
+ㄴ
 
 
 
