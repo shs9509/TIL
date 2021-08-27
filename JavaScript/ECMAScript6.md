@@ -1,4 +1,4 @@
-참고[ 모던 자바스크립트 핵심 가이드]
+이글은 [ 모던 자바스크립트 핵심 가이드] 의 책을 통해서 배운 내용을 정리한 글입니다.
 
 
 
@@ -482,7 +482,135 @@ ES6 에서 배열 메서드가 다수 도입되었다.
 
 # :red_car:스프레드 연산자와 레스트 매개변수
 
-ㄴ
+`...` 이 스프레드 문법이다
+
+
+
+**배열의 결합**이 가능하다.
+
+```javascript
+const code = ["java","c++","c","python"];
+const front = ["CSS", "HTML", "Javascripts"];
+const develop = [...code, "Spring", ...front];
+console.log(develop);
+//["java", "c++", "c", "python", "Spring", "CSS", "HTML", "Javascripts"]
+```
+
+
+
+**배열의 복사**에도 용이하다.
+
+```javascript
+const code = ["java","c++","c","python"];
+const c_code = [...code];
+```
+
+기존의 ES5에서는 `concat`을 사용해서 복사를 했어야되었다.
+
+```java
+const code = ["java","c++","c","python"];
+const c_code = [].concat(code);
+```
+
+
+
+스프레드를 통해서 손쉽게 값을 넣을 수 있다.
+
+```javascript
+function multiple(a,b){
+    return a*b;
+}
+
+const one = [4,6];
+const value = multiple(...one);
+console.log(value)
+//24
+```
+
+
+
+**ES2018에서는 객체에도 스프레드 연산자가 적용이된다!**
+
+
+
+`...` 이것은 레스트 문법이다. 
+
+:thinking:??????
+
+
+
+생긴것은 같지만 스프레드가 '**확장**'을 맡는다면 레스트는'**축소**'를 맡는다.
+
+```javascript
+const parts=["글카","SSD","모니터"];
+const [...computer] = parts;
+console.log(computer);
+//["글카", "SSD", "모니터"]
+```
+
+
+
+
+
+# :robot:객체 리터럴의 업그레이드
+
+ES6 가되어서 객체 리터럴 표기법이 다양하게 개선되었다.
+
+
+
+```javascript
+const name="신형식";
+const age=27;
+const sex="male";
+const job="frontend developer";
+
+// 이를 객체로만들고 싶다면
+const me ={
+    name,
+    age,
+    sex,
+    job,
+    greet(){
+        console.log("good");
+    },
+}
+console.log(me)
+//{name: "신형식", age: 27, sex: "male", job: "frontend developer"}
+```
+
+깔끔하다!  ES5 라면 `name`, `age` 일일히 값까지 적어 줘야했을 것이다.
+
+함수역시 `function` 을 적어주지 않아도 된다.
+
+
+
+객체의 속성을 동적으로 정의할때 간소화되었다.
+
+```javascript
+//ES5
+var name="신형식";
+var person ={};
+person[name]="신형식"
+
+// 빈 객체를 만들어놓고 채워줘야하는 번거로움!
+
+//ES6
+const name = "신형식";
+const person = {
+    [name] = "신형식"
+}
+//생성하면서 바로 할당이 가능하다.
+```
+
+
+
+
+
+
+
+
+
+
 
 
 

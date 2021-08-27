@@ -135,12 +135,6 @@ btn.addEventListener('click', function(event){
 
 
 
-
-
-
-
-
-
 문서조작
 
 문서가 구조화되어있고 이를 다 객체로 취급함
