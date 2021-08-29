@@ -606,21 +606,178 @@ const person = {
 
 
 
+# :symbols:심볼
+
+ES6에서는 심벌이라는 새로운 원시자료형이 추가되었다.
+
+
+
+심볼은 항상 고유하다!!!!!
+
+```javascript
+const my_apple = Symbol('json');
+console.log(my_apple);
+//Symbol(json)
+```
+
+이런식으로 나타나기는 하는데...
+
+고유한 성질을 어떤 상황에서 쓰이는건가?
+
+```javascript
+const my_apple = Symbol('json');
+
+const your_apple = Symbol('json');
+
+console.log(my_apple == your_apple);
+console.log(my_apple === your_apple);
+//false
+//false
+```
+
+분명 같은 값으로 했음에도 불구하고 다른값으로 인식이된다.
+
+직책이나 직급같은경우 같은이름이 많기 때문에 이를 인식 해주려면 쓰는것이 편하다.
+
+하지만 `for in` 을 통한열거는 불가능하다.
+
+속성의 배열을 얻기위해서는 `Object.getOwnPropertySymbols()`를 사용하자.
+
+```javascript
+const office = {
+    [Symbol("Tom")]:"CEO",
+    [Symbol("Json")]:"CTO",
+    [Symbol("Json")]:"CIO"
+}
+
+const symbols = Object.getOwnPropertySymbols(office);
+console.log(symbols);
+//[Symbol(Tom), Symbol(Json), Symbol(Json)]
+
+const value = symbols.map(symbol => office[symbol]);
+console.log(value);
+//["CEO", "CTO", "CIO"]
+```
 
 
 
 
 
+# :classical_building: 클래스
 
 
 
+클래스 생성
+
+```javascript
+class Person{
+  // 클래스 선언 
+}
+
+const me = class Person{
+    // 클래스 표현식
+}
+// 클래스 선언과 표현은 호이스팅되지않는다 꼭 선언 먼저 하자.
+```
 
 
 
+```javascript
+class Person{
+    constructor(name,age){
+        this.name = name;
+        this.age = age;
+    }
+    greet(){
+        console.log(`안녕 내이름은 ${this.name} 이고 나이는 ${this.age}야`);
+    }
+    farewell(){
+        console.log("잘잇으라구");
+    }
+    static info(){
+        console.log("가나다라마바사")
+    }
+}
+
+const shin = new Person("신형식",27);
+shin.greet();
+//안녕 내이름은 신형식 이고 나이는 27야
+shin.farewell();
+//잘잇으라구
+
+shin.info();
+// 에러!!!!
+Person.info();
+//가나다라마바사
+```
+
+​	**정적메서드는 인스턴스에서 접근이 불가능하다.**
 
 
 
+`get` 과 `set`을 통해서 값을 불러오거나 설정할 수 있다.
 
+```javascript
+class Person{
+    constructor(name,age){
+        this.name = name;
+        this.age = age;
+        this.nickname = "";
+    }
+    set nicknames(value){
+        this.nickname = value;
+        console.log(`${this.nickname}`);
+    }
+    get nicknames(){
+        console.log(`현재 제 별명은 ${this.nickname}`);
+    }
+}
+
+const shin = new Person("신형식",27);
+shin.nicknames="짱구아빠";
+//짱구아빠
+shin.nicknames;
+//현재 제 별명은 짱구아빠
+```
+
+
+
+기존클래스를 상속한 새로운 클래스를 쓰려면 `extents`를 사용한다.
+
+```javascript
+class Adult extends Person{
+	constructor(name,age,work){
+        super(name,age);
+		this.work = work;
+	}
+}
+const dad = new Adult("신형만",45,"개발자")
+```
+
+
+
+배열의 확장
+
+```javascript
+class Classroom extends Array {
+    constructor(name, ...students){
+        super(...students);
+        this.name = name;
+    }
+    add(student){
+        this.push(student);
+    }
+}
+const myClass = new Classroom("1A",
+                              {name:"Tim",mark:6},
+                              {name:"dfim",mark:5},
+                              {name:"Tifgm",mark:3},
+                              {name:"erwim",mark:2},
+                             );
+myClass.add({name:"Timmy", mark:7});
+myClass[4];
+//{name: "Timmy", mark: 7}
+```
 
 
 
