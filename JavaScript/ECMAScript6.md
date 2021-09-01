@@ -785,3 +785,174 @@ myClass[4];
 
 
 
+# :camera_flash: 프로미스
+
+프로미스는 비동기 작업의 최종성공 또는 실패를 나타낸다.
+
+
+
+자바스크립트는 동기적으로 작동한다. 
+
+
+
+하지만
+
+```javascript
+const data = fetch('your-api-url-goes-here');
+console.log("Finished");
+console.log(data);
+// Finished
+// undefined
+```
+
+`feach`의 경우 비동기적으로 수행된다.
+
+이를 동기적으로 만들어 주기위해서 프로미스나 콜백을 사용할수있다.
+
+
+
+- 콜백지옥
+
+  콜백지옥은 코드를 동기식으로 만들기위해 여러블록을 복잡하게 연결해놓은 상태를 말한다. 
+
+  ```javascript
+  const makePizza = (ingredients, callback)=>{
+      mixIngredients(ingredients, function(mixedIngredients)){
+                     bakePizza(mixedingredients, function(backedPizza)){
+          console.log("Finished!")
+      }
+                     }
+  }
+  ```
+
+  위처럼` makePizza` 를 쓰기위해 `mixIngredients` 함수를 불러오고 그안에서`mixedIngredients`를 불러오고
+
+  이런식이면 상당히복잡하고 가독성이 떨어진다.
+
+  > 프로미스를 통해서 해결하자.
+
+
+
+- 프로미스
+
+  ```javascript
+  const myPromise = new Promise((resolve,reject)=>{
+      resolve("프로미스 성공")
+  });
+  
+  myPromise.then(
+  	data=>{
+          console.log(data);
+      });
+  //프로미스성공
+  ```
+
+  프로미스가 성공시에는 `then`을 사용하고 실패시에는 `catch`를 사용한다.
+
+  
+
+  - `setTimeout()`을 사용하면 resolve가 호출되기 전까지 일정시간을 기다릴수있다.
+
+  ```javascript
+  const myPromise = new Promise((resolve,reject)=>{
+      setTimeout(()=>{
+        resolve("프로미스 성공")  
+      },1000);
+  });
+  //1초가 지나고 나서야 출력이 된다.
+  ```
+
+  
+
+  - 프로미스는 체이닝이 가능하다.
+
+  ```javascript
+  const myPromise = new Promise((resolve,reject)=>{
+      resolve();
+  })
+  
+  myPromise
+  	.then(data=>{
+     		return "working...";
+  	})
+  	.then(data=>{
+      	console.log(data);
+      	throw 'failed';
+  	})
+  	.catch(err=>{
+      	console.log(err);
+  	});
+  ```
+
+  
+
+  - Promise.resolve() , Promise.reject()
+
+    결과가 정해진 프로미스를 생성할 수 있다.
+
+    ```javascript
+    Promise.resolve("Success")
+        .then(
+        	function(value){console.log("성공")}
+        )
+        .catch(
+        	function(value){console.log("실패")}
+    	);
+    ```
+
+  
+
+  - Promise.all() , Promise.race()
+
+    all() 은 모든 프로미스가 성공할 경무에만 하나의 프로미스를 반환한다.
+
+    다른 프로미스가 성공할때까지 기다린다.
+
+    ```javascript
+    const promise1 = new Promise((resolve,reject)=>{
+        setTimeout(resolve,500,"애가더빠름!")
+    })
+    const promise2 = new Promise((resolve,reject)=>{
+        setTimeout(()=>{reject(Error("애가 오류임"))},1000);
+    })
+    Promise.all([promise1,promise2])
+    	.then(
+    		function(value){
+                console.log(value);
+            }
+    	)
+    	.catch(err=>{
+     		console.log("암튼 뭔가 오류임 범인음");
+        	console.log(err);   
+    	});
+    //암튼 뭔가 오류임 범인음
+    //Error: 애가 오류임
+    ```
+
+    
+
+    race() 의 경우 가장먼저 성공이나 실패한 결과를 반환한다.
+
+    ```javascript
+    const promise1 = new Promise((resolve,reject)=>{
+        setTimeout(resolve,500,"애가더빠름!")
+    })
+    const promise2 = new Promise((resolve,reject)=>{
+        setTimeout(resolve,1000,"애가더느림!")
+    })
+    
+    Promise.race([promise1,promise2])
+    	.then(
+    		function(value){
+                console.log(value);
+            }
+    	);
+    
+    //애가더빠름!
+    ```
+
+    
+
+
+
+# 세트, 위크셋, 맵, 위크맵
