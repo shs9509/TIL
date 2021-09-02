@@ -96,7 +96,7 @@ Hierarchy Back 은 어디있을까 생각했는데  대표적으로 **iOS** UI�
 
 **history.back()** 을 사용하자(?)
 
-<img src="Vue/vue_asset/image-20210805232940174.png" alt="image-20210805232940174" style="zoom: 80%;" />
+<img src="vue_asset/image-20210805232940174.png" alt="image-20210805232940174" style="zoom: 80%;" />
 
 ​								https://developer.mozilla.org/ko/docs/Web/API/History/back
 
@@ -110,13 +110,15 @@ Hierarchy Back 은 어디있을까 생각했는데  대표적으로 **iOS** UI�
 
   
 
-<img src="Vue/vue_asset/image-20210805232707961-1628406518553.png" alt="image-20210805232707961" style="zoom: 80%;" />
+<img src="vue_asset/image-20210805232707961-1628406518553.png" alt="image-20210805232707961" style="zoom: 80%;" />
+
+
 
 ​							https://router.vuejs.org/kr/guide/essentials/navigation.html
 
 
 
-![image-20210805233145004](Vue/vue_asset/image-20210805233145004.png)
+![image-20210805233145004](vue_asset/image-20210805233145004.png)
 
 
 
@@ -140,9 +142,7 @@ Back(){
 
 필자 역시 history-mode 였기때문에  상관을 없었지만 그래도 왜 hash 모드에서는 안될까 찾아봤는데 그런글은 찾아볼 수 없었다. 
 
-그런데 가이드에서 글을 잘 살펴보면 이런 말이있다.
-
-<img src="C:\Users\multicampus\AppData\Roaming\Typora\typora-user-images\image-20210806000330451.png" alt="image-20210806000330451" style="zoom:80%;" />
+그런데 가이드에서 글을 잘 살펴보면 해시모드 역시 가능하다고 써져있다.
 
 음.. 되긴하는데 go(-1) 이 안되는것일까.. 의아한 부분이다.
 

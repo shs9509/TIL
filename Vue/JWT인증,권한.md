@@ -109,14 +109,3 @@ from rest_framework_jwt.authentication import JSONWebTokenAuthentication
 ```
 
 
-
-
-
-
-
-
-
-인증 플랫폼
-
-
-

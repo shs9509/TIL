@@ -49,9 +49,7 @@ https://wbluke.tistory.com/18
 
 Spring Boot와 JPA를 기반으로한 코드였기 때문에 참고할수가 없었다. :sob:
 
-![image-20210806013230588](Vue/vue_asset/image-20210806013230588.png)
-
-axios 에서 저렇게 size를 사용해 원하는 만큼의 크기를 요청할수있는것 같으나 Vue에서 그런 기능을 찾진 못했다.
+axios 에서는 size를 사용해 원하는 만큼의 크기를 요청할수있는것 같으나 Vue에서 그런 기능을 찾진 못했다.
 
 
 
@@ -145,8 +143,6 @@ http://devstory.ibksplatform.com/2020/03/spring-boot-jpa-pageable.html
 ## 후기
 
 나도 라이브러리를 안쓰고 구현할수있지 않을까? 라는 생각이 들었다.  **(우매함의 봉우리)**
-
-<img src="Vue/vue_asset/image-20210806020548260.png" alt="image-20210806020548260" style="zoom: 50%;" />
 
 나름 SNS의 핵심기능을 구현한것 같아 뿌듯하다.
 
