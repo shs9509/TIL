@@ -951,7 +951,75 @@ console.log(data);
     //애가더빠름!
     ```
 
-    
+
+
+
+* settimeout()
+
+  https://webisfree.com/2014-04-08/[javascript]-%EC%8B%9C%EA%B0%84-%EC%A7%80%EC%97%B0-%ED%95%A8%EC%88%98-%EC%9D%BC%EC%A0%95-%EC%8B%9C%EA%B0%84-%EB%92%A4-%EC%8B%A4%ED%96%89%EC%8B%9C%ED%82%A4%EA%B8%B0-settimeout()-%7B%7D
+
+
+
+
+
+# :factory: 제네레이터
+
+제네레이터는 원하는 맡큼 코드실행을 시작하거나 중지할수있는 함수다.
+
+
+
+```javascript
+function * fruitList(){
+    yield 'Banana';
+    yield 'Apple';
+    yield 'Orange';
+}
+const fruits = fruitList();
+fruits.next();
+//{value: "Banana", done: false}
+fruits.next();
+//{value: "Apple", done: false}
+fruits.next();
+//{value: "Orange", done: false}
+fruits.next();
+//{value: undefined, done: true}
+```
+
+
+
+`for of` 를 통해서 `yield`부분을 반복할수있다.
+
+```javascript
+const fruitList = ["Banana","Apple","Orange"]
+function * loop(arr){
+    for(const fruit  of arr){
+        yield `${fruit}`
+    } 
+}
+const fruits = loop(fruitList);
+
+fruits.next();
+//{value: "Banana", done: false}
+fruits.next();
+//{value: "Apple", done: false}
+fruits.next();
+//{value: "Orange", done: false}
+fruits.next();
+//{value: undefined, done: true}
+
+fruits.return();
+//{value: undefined, done: true}
+```
+
+`.next()` 말고 `.return`을 쓰면 멈출수잇다.
+
+
+
+
+
+# 프록시
+
+
 
 
 
