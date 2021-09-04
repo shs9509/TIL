@@ -1017,10 +1017,111 @@ fruits.return();
 
 
 
-# 프록시
+# :eagle: 프록시
+
+프록시 객체는 기본작업에 대해 사용자 지정동작을 추가로 정의하는 데 사용된다.
+
+
+
+- 생성방법
+
+```javascript
+const x = new Proxy(target, handler)
+```
+
+target : 객체, 함수, 다른프록시 등 뭐든지 가능하다.
+
+handler: 작업이 수행될때 프록시의 동작을 정의하는 객체이다.
+
+
+
+- 예시
+
+```javascript
+const book = {name:"Justice", author:"마이클 샌델" }
+const bookProxy = new Proxy(book,{
+    get(target,book){
+        return target[book].toUpperCase();
+    },
+    set(target, book, value){
+        console.log("it is hard to read for me...")
+        target[book] = value
+    },
+});
+console.log(bookProxy.name);
+//JUSTICE
+console.log(bookProxy.name = "Sanz");
+//it is hard to read for me...
+//Sanz
+console.log(bookProxy.name);
+//SANZ
+
+
+//////////////////////////////////////////////////////////////////////////
+// handler를 따로 나눈 버젼///
+
+const book = {name:"Justice", author:"마이클 샌델" }
+const handler ={
+    get: (target,property) => {
+        return target[property].toUpperCase();
+    },
+    set: (target, property, value) => {
+        console.log("it is hard to read for me...");
+        target[property] = value;
+    }
+}
+const bookProxy = new Proxy(book,handler);
+console.log(bookProxy.name);
+
+```
+
+
+
+프록시를 통해서 get,set를 연속적으로 쓰는일을 막을수있다.
+
+또한 사용할수없는 속성에 접근할때 사용자 지정메세지를 출력이 가능하다. 
+
+(set에서 property에 조건을 걸어서 메세지를 넣을수있다.)
 
 
 
 
 
 # 세트, 위크셋, 맵, 위크맵
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
