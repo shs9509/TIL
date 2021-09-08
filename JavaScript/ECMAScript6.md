@@ -1087,17 +1087,114 @@ console.log(bookProxy.name);
 
 
 
-# 세트, 위크셋, 맵, 위크맵
+# :framed_picture: 세트, 위크셋, 맵, 위크맵
 
 
 
+- Set
+  - 어떠한 자료값이든 원소를 고유하게 저장한다.
+  - delete로 특정 값 삭제 가능하며, clear로 원소를 다 삭제할 수 있다.
+  - .next() 와 for of 로 Set을 반복할 수 있다.
+  - Set으로 설정함으로서 중복을 거를 수 있다.
+
+- WeakSet
+  - Set 과 유사하지만 객체만을 포함한다.
+  - 이터러블 하지않기 때문에 for of를 통해 반복이 불가능하다.
+
+```javascript
+//SET
+const myArray = ["a","b","c","d","e","a"]
+const mySet = new Set(myArray);
+console.log(mySet);
+//Set(5) {"a", "b", "c", "d", "e"}
+
+mySet.size;
+//5
+mySet.keys();
+//SetIterator {"a", "b", "c", "d", "e"}
+mySet.entries();
+//SetIterator {"a" => "a", "b" => "b", "c" => "c", "d" => "d", "e" => "e"}
+const mySetValue = mySet.values();
+mySetValue.next();
+//{value: "a", done: false}
+mySetValue.next();
+//{value: "b", done: false}
+for(const char of mySet){
+    console.log(char);
+}
+//a
+//b
+//c
+//d
+//e
+
+const myReArray = Array.from(mySet);
+console.log(myReArray);
+//(5) ["a", "b", "c", "d", "e"]
+
+--------------------------------------------------------------------------------------
+// WEAK SET
+
+let apple = {from:"dad", price:4500};
+let banana = {from:"mom", price:8000};
+
+const fruits = new WeakSet([apple,banana]);
+console.log(fruits);
+//WeakSet {{…}, {…}}
+//	[[Entries]]
+//	0:
+//		value: {from: "mom", price: 8000}
+//	1:
+//		value: {from: "dad", price: 4500}
+```
 
 
 
+- Map
+  - Set과 유사하지만 키와 값을로 구성되어있다.
+  - for of 뿐만 아니라 forEach 로도 반복이 가능하다.
+- WeakMap
+  - 키/값 구성이되, 키는 객체여야만 한다.
+  - WeakSet 처럼 반복이 불가능하다.
+
+```javascript
+const fruits = new Map();
+fruits.set("Banana",4500);
+fruits.set("Apple",5500);
+fruits.set("Peach",3500);
+
+fruits;
+//Map(3) {"Banana" => 4500, "Apple" => 5500, "Peach" => 3500}
+fruits.size;
+//3
+fruits.forEach((val,key)=> console.log(key,val));
+//Banana 4500
+//Apple 5500
+//Peach 3500
+for(const [key,val] of fruits){
+    console.log(key,val);
+}
+//Banana 4500
+//Apple 5500
+//Peach 3500
+```
 
 
 
+WEAK 의 특징은 키(객체)가 약하게 참조가된다.
 
+그결과로 키로 사용된 객체의 참조가 손실되서 가비지 컬렉터에 의해 수집되면 WeakMap,WeakSet에서도 해당 값이 자동으로 제거된다.
+
+```javascript
+let apple = {from:"dad", price:4500};
+let banana = {from:"mom", price:8000};
+
+const fruits = new WeakSet([apple,banana]);
+apple = null;
+console.log(fruits)
+//WeakSet {{…}, {…}}
+//얼마후 다시해보면 WeakSet {{…}}로 되있는다.
+```
 
 
 
