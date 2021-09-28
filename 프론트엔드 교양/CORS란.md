@@ -14,7 +14,7 @@ CORS란 브라우저에서 다른 출처의 리소스를 공유하는방법입�
 
 
 
-![image-20210919210107882](C:\Users\PRO\AppData\Roaming\Typora\typora-user-images\image-20210919210107882.png)
+![image-20210919210107882](CORS란.assets/image-20210919210107882.png)
 
 URL 구조를 살펴보면 이렇습니다.
 
@@ -26,7 +26,7 @@ URL 구조를 살펴보면 이렇습니다.
 
 이는 콘솔창에서  `location.origin`를 실행하면 출처를 확인 가능합니다.
 
-![image-20210919210334520](C:\Users\PRO\AppData\Roaming\Typora\typora-user-images\image-20210919210334520.png)
+![image-20210919210334520](CORS란.assets/image-20210919210334520.png)
 
 동일출처정책이란게 있습니다.
 
@@ -35,6 +35,10 @@ URL 구조를 살펴보면 이렇습니다.
 하지만 필요한 정책입니다.
 
 XSS 나 XSRF 등의 보안 취점을 방어할수있는 정책입니다. 그래서 외부리소스를 사용하기위한 동일출처정책의 예외가 CORS 입니다.
+
+XSS: 권한없는 사용자가 웹 사이트에 스크립트를 삽입하는 공격 기법
+
+XSRF: 쿠키만으로 인증하는 서비스의 취약점을 이용해, 사용자가 모르게 해당 서비스에 특정 명령을 요청하는 공격
 
 
 
@@ -48,7 +52,7 @@ XSS 나 XSRF 등의 보안 취점을 방어할수있는 정책입니다. 그래�
 
 서버에게 바로 요청을 보내는 겁니다.
 
-![image-20210919211003580](C:\Users\PRO\AppData\Roaming\Typora\typora-user-images\image-20210919211003580.png)
+![image-20210919211003580](CORS란.assets/image-20210919211003580.png)
 
 
 
@@ -65,7 +69,7 @@ XSS 나 XSRF 등의 보안 취점을 방어할수있는 정책입니다. 그래�
 
 ### 예비요청을 보내는 방법
 
-![image-20210919211205823](C:\Users\PRO\AppData\Roaming\Typora\typora-user-images\image-20210919211205823.png)
+![image-20210919211205823](CORS란.assets/image-20210919211205823.png)
 
 예비요청방법은 총2번의 요청을 보냅니다.
 
