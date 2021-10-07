@@ -85,5 +85,5 @@
 
 https://velog.io/@katanazero86/%EC%9B%B9-%ED%8E%98%EC%9D%B4%EC%A7%80-%EB%8B%A4%ED%81%AC-%EB%AA%A8%EB%93%9Cdark-mode-dark-theme-%EC%A0%81%EC%9A%A9
 
-http://icunow.co.kr/guide-darkmode/
+http://icunow.co.kr/guide-darkmod
 
