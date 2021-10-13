@@ -2,6 +2,8 @@
 
 https://heropy.blog/2018/01/31/sass/
 
+https://yunzema.tistory.com/269
+
 
 
 # CSS Preprocessor 란?
@@ -13,7 +15,33 @@ HTML, CSS를 다루는 분이라면 한 번은 들어봤을 Sass, Less 등이 �
 CSS가 동작하기 전에 사용하는 기능으로,
 웹에서는 분명 CSS가 동작하지만 우리는 CSS의 불편함을 이런 확장 기능으로 상쇄할 수 있습니다.
 
-> 사스는 기초 언어에 힘과 우아함을 더해주는 CSS의 확장이다.
+
+
+Sass는 CSS의 단점을 보정하기 위한 CSS의 확장으로 나온 스크립트 언어이다.
+
+프로젝트가 점점 커지고, 복잡해져가면서 스타일시트도 덩달아 커지고 관리할게 많아지며 복잡해진다. 이에 따라 유지보수도 당연히 힘들어진다. (프로젝트 규모가 커질 수록 스타일 시트 정말 보기 싫어진다..)
+
+ 단순해서 배우기 쉽지만 단순하기만 해서 가지는 이 단점들을 보완하기 위해 **variable, nesting, mixin, inheritance 등**의 개념이 추가된 것이 Sass이다. (앞서 말했듯이 말그대로 CSS의 확장)
+
+Sass는 Preprocessing 과정을 통해 css로 해석 및 컴파일 된다.
+
+
+
+### **실제 Sass가 가지고 있는 의미**
+
+Sass는 '전처리기(Pre-Processor)'와 그 '구문(Syntax)' 두가지를 모두 지칭한다. 그래서 좀 혼동이 오기도 한다.
+
+Sass는 CSS의 { } 블록이 아닌 들여쓰기 감지를 핵심특성으로 갖는 구문을 가리켰으나, '**Sassy CSS**'를 의미하는 SCSS라는 CSS친화적인 구문을 제공함으로써 Sass와 CSS 사이의 차이를 좁히는 방향으로 변화되어 왔다.
+
+"유효한 CSS라면, 유효한 SCSS이다."
+
+그 이후 Sass(전처리기)는 들여쓰기 구문인 Sass 와 앞서 말한 SCSS의 구문을 모두 사용 가능하며, 동등한 기능을 갖고 있어 원하는 구문을 사용하면 된다. 개취존중.
+
+아무래도 CSS의 구문 형태가 더 익숙하기 때문에 SCSS를 더 많이 선호하는 경향이 있는 듯 하다.
+
+여기서 그러면 SCSS까지 설명이 되었다.
+
+
 
 ### 어떻게 사용하나요?
 
@@ -55,3 +83,47 @@ Sass(SCSS)는 언급한 두 가지 전처리기의 장점을 모두 가집니다
 
 Sass(Syntactically Awesome Style Sheets)의 3버전에서 새롭게 등장한 SCSS는 CSS 구문과 완전히 호환되도록 새로운 구문을 도입해 만든 Sass의 모든 기능을 지원하는 CSS의 상위집합(Superset) 입니다.
 즉, SCSS는 CSS와 거의 같은 문법으로 Sass 기능을 지원한다는 말입니다.
+
+
+
+
+
+**CSS**
+
+```
+/**CSS Syntax**/
+
+nav ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+nav li {
+  display: inline-block;
+}
+nav a {
+  display: block;
+  padding: 6px 12px;
+  text-decoration: none;
+}
+```
+
+**Sass**
+
+```
+/**Sass Syntax**/
+
+nav
+  ul
+    margin: 0
+    padding: 0
+    list-style: none
+
+  li
+    display: inline-block
+
+  a
+    display: block
+    padding: 6px 12px
+    text-decoration: none
+```
