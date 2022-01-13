@@ -1,0 +1,61 @@
+#grid {
+  display: grid;
+  grid-template-rows: 170px 200px 50px 50px;
+  grid-template-columns: 125px 400px 40px;
+  grid-template-areas:
+    "one three three"
+    "two three three"
+    "four five six"
+    "four five seven";
+}
+
+
+#one
+{
+  background-color: whitesmoke;
+  /* grid-column: 100%;
+  grid-row: 100%; */
+  grid-area: 'one';
+}
+#two
+{
+  background-color: whitesmoke;
+  /* grid-column: 100%;
+  grid-row: 100%; */
+  grid-area: 'two';
+}
+#three
+{
+  background-color: red;
+  /* grid-column: 100%;
+  grid-row: 100%; */
+  grid-area: 'three';
+}
+#four
+{
+  background-color: navy;
+  /* grid-column: 100%;
+  grid-row: 100%; */
+  grid-area: 'four';
+}
+#five
+{
+  background-color: whitesmoke;
+  /* grid-column: 100%;
+  grid-row: 100%; */
+  grid-area: 'five';
+}
+#six
+{
+  background-color: whitesmoke;
+  /* grid-column: 100%;
+  grid-row: 100%; */
+  grid-area: 'six';
+}
+#seven
+{
+  background-color: yellow;
+  /* grid-column: 100%;
+  grid-row: 100%; */
+  grid-area: 'seven';
+}
