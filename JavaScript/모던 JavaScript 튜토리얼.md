@@ -262,7 +262,173 @@
 
 
 
--------------
+
+
+-----------
+
+
+
+- 스크립트 내에서 `debugger;` 를 사용하면 중단점을 설정한 것 과은 효과를 낸다.
+
+
+
+-----------
+
+
+
+- 유명한 자바스크립트 스타일 가이드
+  - [Google의 자바스크립트 스타일 가이드](https://google.github.io/styleguide/jsguide.html)
+  - [Airbnb의 자바스크립트 스타일 가이드](https://github.com/airbnb/javascript)
+  - [Idiomatic.JS](https://github.com/rwaldron/idiomatic.js)
+  - [StandardJS](https://standardjs.com/)
+
+- Linter를 사용하면 코드가 스타일 가이드를 준수하고있는지 자동으로 확인할 수 있다.
+
+  - 오타 등 버그도 확인이 가능해서 좋다.
+
+  - [JSLint](http://www.jslint.com/) – 역사가 오래된 linter
+
+  - [JSHint](http://www.jshint.com/) – JSLint보다 세팅이 좀 더 유연한 linter
+
+  - [ESLint](http://eslint.org/) – 가장 최근에 나온 linter
+
+    1. [Node.js](https://nodejs.org/)를 설치합니다.
+
+    2. npm(자바스크립트 패키지 매니저)을 사용해 다음 명령어로 ESLint를 설치합니다. `npm install -g eslint`
+
+    3. 현재 작성 중인 자바스크립트 프로젝트의 루트 폴더(프로젝트 관련 파일이 담긴 폴더)에 `.eslintrc`라는 설정 파일을 생성합니다.
+
+    4. 에디터에 ESLint 플러그인을 설치하거나 활성화합니다. 주요 에디터들은 모두 ESLint 플러그인을 지원합니다.
+
+  - 설치방법: http://eslint.org/docs/user-guide/getting-started
+
+
+
+----------
+
+
+
+- 좋은 주석
+  - 아키텍처를 설명하는 주석
+    - 컴포넌트의 개요, 컴포넌트 간의 상호작용에 대한 설명
+    - 상황에 따른 제어흐름
+  - 함수 용례와 매개변수 정보를 담고 있는 주석
+    - JSDoc 을 사용하면 함수에 관한 문서를 쉽게 작성이 가능하다.
+  - 왜 이런방법으로 문제를 해결했는지를 설명하는 주석
+    - 이미 햇던 방법을 새로 시도하게 만들지 않는것만으로 충분하다.
+    - 최근 redux로 상태관리했으나 결국 로컬스토리지 사용을 하는게 나았다는게 떠오름..
+  - 미묘한 기능이 있고 이기능이 어디에쓰이는지 설명하는 주석
+- 안좋은 주석
+  - 코드가 어떻게 동작하는지
+  - 코드가 상세하게 무엇을 하는지
+
+
+
+------------
+
+
+
+- BDD 방법론
+  - 테스트, 문서, 예시를 한데 모아놓은 개념
+
+- BDD 명세서(spec)
+
+```js
+describe("pow", function() { //describe 첫 인수 - 구현하는 기능(title), 
+  it("주어진 숫자의 n 제곱", function() { //it 첫 인수 -유스케이스설명, 테스트함수
+    assert.equal(pow(2, 3), 8);//assert가 함수가 예상대로 동작하는지 확인 equal사용되서 8과 같은지 비교할것임
+  });
+});// 테스트마다 it 블록을 생성해서 진행
+```
+
+
+
+- 개발 순서
+
+  1. 명세서 초안을 작성합니다. 초안엔 기본적인 테스트도 들어갑니다.
+
+  2. 명세서 초안을 보고 코드를 작성합니다.
+
+  3. 코드가 작동하는지 확인하기 위해 [Mocha](http://mochajs.org/)라 불리는 테스트 프레임워크를 사용해 명세서를 실행합니다.(Mocha에 대해선 아래에서 다룰 예정입니다.) 이때, 코드가 잘못 작성되었다면 에러가 출력됩니다. 개발자는 테스트를 모두 통과해 에러가 더는 출력되지 않을 때까지 코드를 수정합니다.
+
+  4. 모든 테스트를 통과하는 코드 초안이 완성되었습니다.
+
+  5. 명세서에 지금까진 고려하지 않았던 유스케이스 몇 가지를 추가합니다. 테스트가 실패하기 시작할 겁니다.
+
+  6. 세 번째 단계로 돌아가 테스트를 모두 통과할 때까지 코드를 수정합니다.
+
+  7. 기능이 완성될 때까지 3~6단계를 반복합니다.
+
+- 사용되는 라이브러리
+  - [Mocha](http://mochajs.org/) – 핵심 테스트 프레임워크로, `describe`, `it`과 같은 테스팅 함수와 테스트 실행 관련 주요 함수를 제공합니다.
+  - [Chai](http://chaijs.com/) – 다양한 assertion을 제공해 주는 라이브러리입니다. 우리 예시에선 `assert.equal` 정도만 사용해 볼 예정입니다.
+  - [Sinon](http://sinonjs.org/) – 함수의 정보를 캐내는 데 사용되는 라이브러리로, 내장 함수 등을 모방합니다. 본 챕터에선 사용하지 않고, 다른 챕터에서 실제로 사용해 볼 예정입니다.
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- 결과 출력에 사용되는 mocha css를 불러옵니다. -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mocha/3.2.0/mocha.css">
+    
+  <!-- Mocha 프레임워크 코드를 불러옵니다. -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mocha/3.2.0/mocha.js"></script>
+  <script>
+    mocha.setup('bdd'); // 기본 셋업
+  </script>
+    
+  <!-- chai를 불러옵니다 -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/chai/3.5.0/chai.js"></script>
+  <script>
+    // chai의 다양한 기능 중, assert를 전역에 선언합니다.
+    let assert = chai.assert;
+  </script>
+</head>
+
+<body>
+
+  <script>
+    function pow(x, n) {
+      /* 코드를 여기에 작성합니다. 지금은 빈칸으로 남겨두었습니다. */
+    }
+  </script>
+
+  <!-- 테스트(describe, it...)가 있는 스크립트를 불러옵니다. -->
+  <script src="test.js"></script>
+
+  <!-- 테스트 결과를 id가 "mocha"인 요소에 출력하도록 합니다.-->
+  <div id="mocha"></div>
+
+  <!-- 테스트를 실행합니다! -->
+  <script>
+    mocha.run();
+  </script>
+</body>
+
+</html>
+```
+
+
+
+- 함수 `before`는 (전체) 테스트가 실행되기 전에 실행되고, 함수 `after`는 (전체) 테스트가 실행된 후에 실행됩니다. 함수 `beforeEach`는 *매* `it`이 실행되기 전에 실행되고, 함수 `afterEach`는 *매* `it`이 실행된 후에 실행됩니다.
+  - `beforeEach/afterEach`와 `before/after`는 대개 초기화 용도로 사용됩니다. 카운터 변수를 0으로 만들거나 테스트가 바뀔 때(또는 테스트 그룹이 바뀔 때)마다 해줘야 하는 작업이 있으면 이들을 이용할 수 있습니다.
+
+- BDD의 핵심은 실패할 수밖에 없는 테스트를 추가하고, 테스트를 통과할 수 있게(에러가 발생하지 않게) 코드를 개선하는 것이다.
+
+
+
+------------
+
+
+
+주목할 만한 폴리필
+
+- [core js](https://github.com/zloirock/core-js) – 다양한 폴리필을 제공합니다. 특정 기능의 폴리필만 사용하는 것도 가능합니다.
+- [polyfill.io](http://polyfill.io/) – 기능이나 사용자의 브라우저에 따라 폴리필 스크립트를 제공해주는 서비스입니다.
+
+
+
+----------
 
 
 
