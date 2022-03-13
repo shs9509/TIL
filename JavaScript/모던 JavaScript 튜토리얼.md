@@ -428,7 +428,98 @@ describe("pow", function() { //describe 첫 인수 - 구현하는 기능(title),
 
 
 
-----------
+---------
+
+
+
+- 객체에는 다양한 데이터를 담을 수 있음
+
+- 프로젝트를 삭제하려면 `delete`를 사용한다.
+
+- `const`로 수정된 객체는 수정이 가능합니다.
+
+- 유효한 변수 식별자를 포함하는데 대괄호 표기법을 사용하기도 합니다.
+
+  - ```js
+    user["likes birds"] = true;
+    ```
+
+  - 안에 변수는 따옴표로 묶어줘야합니다.
+
+- 객체 안에 프로퍼티가 대괄호로 둘러싸인것을 계산된 프로퍼티라고 한다.
+
+  - ```js
+    let fruit = prompt("어떤 과일을 구매하시겠습니까?", "apple");
+    
+    let bag = {
+      [fruit]: 5, // 변수 fruit에서 프로퍼티 이름을 동적으로 받아 옵니다.
+    };
+    
+    alert( bag.apple ); // fruit에 "apple"이 할당되었다면, 5가 출력됩니다.
+    ```
+
+  - `[fruit]`의 프로퍼티 이름은 `fruit`에서 갖고 오겠다는 말 
+
+  - ```js
+    let fruit = 'apple';
+    let bag = {
+      [fruit + 'Computers']: 5 // bag.appleComputers = 5
+    };
+    ```
+
+  - 복잡한 이름선정이 필요하게되면 대괄호표기법을 사용하게된다.
+
+- 프로퍼티값을 편하게 선정해주는 단축구문을 사용할수잇다.
+
+  - ```js
+    let user = {
+      name,  // name: name 과 같음
+      age: 30
+    };
+    ```
+
+- 프로퍼티에는 예약어를 사용해도 된다.
+
+- `__proto__`는 근본이 있는 예약어라 객체 프로퍼티로 만들수 없다.
+
+- 프로퍼티의 여부 확인은 `in`을 사용한다.
+
+  - ```js
+    let user = { name: "John", age: 30 };
+    
+    alert( "age" in user ); // user.age가 존재하므로 true가 출력됩니다.
+    ```
+
+  - 따옴표를 꼭 사용하자.
+
+  - `in`을 안쓰면 `undefined`를 확인하는 방법이 있는데 이는 불확실한 방법이다.
+
+- `for in`을 사용해서 객체의 모든 키를 순회 할수있습니다.
+
+  - ```js
+    let user = {
+      name: "John",
+      age: 30,
+      isAdmin: true
+    };
+    
+    for (let key in user) {
+      // 키
+      alert( key );  // name, age, isAdmin
+      // 키에 해당하는 값
+      alert( user[key] ); // John, 30, true
+    }
+    ```
+
+  - 출력되는 프로퍼시는 시간순이지만 정수프로퍼티의 경우에는 정렬되어서 나타난다.
+
+
+
+---------
+
+
+
+
 
 
 
