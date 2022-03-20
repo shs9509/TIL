@@ -1008,13 +1008,14 @@ describe("pow", function() { //describe 첫 인수 - 구현하는 기능(title),
 - 부분 문자열을 찾는데 여러가지 방법이 있습니다.
 
   - `str.indexOf(substr,pos)` : pos 부터 시작해서 substr을 찾아서 위치를 반환, 못찾으면 -1
-
     - `str.lastIndexOf(substr,pos)`는 뒤에서 부터 찾음 (pos 부터 범위인건 같음)
-
+    
     - `if(~str.indexOf("..."))` 를 쓰면 부분문자열인지 확인하는 거임
       - `~`이 붙으면 값이 `~n` 이 `-(n+1)`이 되니깐 -1 출력이 0 출력되서 false가 되는거임
-
   - `includes`는 참거짓으로  리턴함
+    - 위에 것들은 찾을때 `===` 사용함  즉, `false`는 형변환없이 그대로 찾는다는 점
+    - 근데 `includes`는 ` NaN`도 잘찾음, 위에는 못함
+      - 원래 `NaN`은 `===`에 무조건 `false`임
   - `startsWith`는 특정 문자열로 시작하는지
   - `endsWith`는 특정 문자열로 끝나는지
 
@@ -1093,13 +1094,45 @@ describe("pow", function() { //describe 첫 인수 - 구현하는 기능(title),
 
 
 
+- `splice(index[, deleteCount, elem1, ..., elemN])`
 
+  - `index`에 해당되는 위치부터 `deleteCount`만큼의 수를 제거합니다. (제거된 요소는 반환!)
 
+  - 그리고 `elem`을 추가를 합니다.
 
+  - ```js
+    let arr = ["I", "study", "JavaScript", "right", "now"];
+    // 처음(0) 세 개(3)의 요소를 지우고, 이 자리를 다른 요소로 대체합니다.
+    arr.splice(0, 3, "Let's", "dance");
+    alert( arr ) // now ["Let's", "dance", "right", "now"]
+    ```
 
+  - 음수 인덱스도 사용가능
 
+- `slice([start], [end])`
 
+  - `start` 부터 `end` 직전 까지의 요소들을 복사하여 새로운 배열을 반환합니다.
+  - 음수가능
+  - `splice`와는 다르게 배열로 반환함 
+  - 인수를 안넣어서 그대로 복사본을 만들수 있음
 
+- `concat(arg1, arg2...)`
+
+  - 인수가 합쳐짐
+    - 배열이면 배열 요소들이 합쳐지고
+    - 객체는 그대로 합쳐짐
+      - 근데 `Symbol.isConcatSpreadable`이게 `true` 이면 배열로 취급
+      - 객체의 프로퍼티`값` 이 더해짐
+
+- `forEach` 인수로 주어진 함수를 배열 요소에 적용 가능
+
+  - ```js
+    ["Bilbo", "Gandalf", "Nazgul"].forEach((item, index, array) => {
+      alert(`${item} is at index ${index} in ${array}`);
+    });
+    ```
+
+    
 
 
 
