@@ -1132,7 +1132,111 @@ describe("pow", function() { //describe 첫 인수 - 구현하는 기능(title),
     });
     ```
 
+
+
+
+- 배열 내 객체를 찾을 때에는 `find`를 사용한다.
+
+  - ```js
+    let result = arr.find(function(item, index, array) {
+      // true가 반환되면 반복이 멈추고 해당 요소를 반환합니다.
+      // 조건에 해당하는 요소가 없으면 undefined를 반환합니다.
+        //하나의 요소만 찾음!!!
+    });
+    ```
+
+  - ```js
+    let users = [
+      {id: 1, name: "John"},
+      {id: 2, name: "Pete"},
+      {id: 3, name: "Mary"}
+    ];
+    let user = users.find(item => item.id == 1);
+    alert(user.name); // John
+    ```
+
+  - `findindex`는 인덱스를 반환함 조건에 맞는게 없으면 `-1`을 반환한다.
+
+- `find`는 하나의 요소만 찾는다. 여러개를 찾으려면 `filter`를 사용한다.
+
+  - 배열을 반환한다. 
+
+
+
+- `map`은 배열 요소 전체를 대상으로 함수를 호출하고 결과를 배열로 반환해줍니다.
+
+  - ```js
+    let lengths = ["Bilbo", "Gandalf", "Nazgul"].map(item => item.length);
+    alert(lengths); // 5,7,6
+    ```
+
+- `sort` 배열의 요소를 정리를 하는데 요소안의 값은 문자열로 취급됩니다.
+
+  - `sort`의 인수로 함수를 넣어줘야하며 이 함수는 값두개를 비교해야하며 반환값도 있어야합니다.
+
+  - ```js
+    function compare(a, b) {
+      if (a > b) return 1; // 첫 번째 값이 두 번째 값보다 큰 경우
+      if (a == b) return 0; // 두 값이 같은 경우
+      if (a < b) return -1; //  첫 번째 값이 두 번째 값보다 작은 경우
+    }
     
+    arr.sort( (a, b) => a - b ); // 깔끔
+    ```
+
+  - 문자열에서는 `localeCompare`을 사용하면됩니다.
+
+- `reverse`
+
+- `split`을 쓰면 문자열을 배열로 바꿀수 있습니다.
+
+- `join`은 배열을 문자열로 만들어줍니다.
+
+
+
+- `reduce`를 이용하면 배열내 요소에 중복으로 함수를 적용할수있습니다.
+
+  - ```js
+    let value = arr.reduce(function(accumulator, item, index, array) {
+      // ...
+    }, [initial]);
+    ```
+
+    - `accumulator` – 이전 함수 호출의 결과. `initial`은 함수 최초 호출 시 사용되는 초깃값을 나타냄(옵션)
+    - `item` – 현재 배열 요소
+    - `index` – 요소의 위치
+    - `array` – 배열
+
+  - ```js
+    let arr = [1, 2, 3, 4, 5];
+    let result = arr.reduce((sum, current) => sum + current, 0);
+    alert(result); // 15
+    ```
+
+  - 초깃값이 없으면 배열의 첫번째 요소가 되지만 빈배열이라면 에러를 발생하므로 주의를 기울여야합니다.
+
+  - `reduceRight`는 배열의 오른쪽 부터 연산을 수행 합니다.
+
+
+
+- 배열도 객체이기 때문에 배열인것을 확인하기 위해서는 `isArray`를 사용합니다.
+
+- 대부분 함수를 호출하는 배열메서드는 `thisArg` 매개변수를 옵션으로 받습니다.
+
+  - ```js
+    arr.find(func, thisArg);
+    arr.filter(func, thisArg);
+    arr.map(func, thisArg);
+    // thisArg는 선택적으로 사용할 수 있는 마지막 인수입니다.
+    ```
+
+  - thisArg는 func의 this가 됩니다.
+
+  - this를 지정해줄 수 있습니다.
+
+
+
+----------------
 
 
 
