@@ -1240,3 +1240,104 @@ describe("pow", function() { //describe 첫 인수 - 구현하는 기능(title),
 
 
 
+- 배열을 일반화한 객체가 반복가능(이터러블)한 객체다.
+
+  - 즉, 이터러블 객체는 언제나 `for of ` 사용이 가능하다.
+
+- ```js
+  let range = {
+    from: 1,
+    to: 5
+  };
+  ```
+
+  - 이터러블로 만들려면 `Symbol.iterator` 메서드를 추가해야한다.
+  - `for of`의 경우 시작시`Symbol.iterator` 를 호출 하기 때문, 없으면 에러를 출력한다.
+    - 다음에는 `next()`를 호출한다. `next()`의 반환값은  `{done: Boolean, value: any}`다.
+      - `done`이 `true`면 끝났다는 말
+
+  - ```js
+    let range = {
+      from: 1,
+      to: 5
+      [Symbol.iterator](){
+        current: this.from,
+        last: this.to,
+    	},
+      next() {
+            // 4. next()는 값을 객체 {done:.., value :...}형태로 반환해야 합니다.
+          if (this.current <= this.last) {
+              return { done: false, value: this.current++ };
+          } else {
+              return { done: true };
+          }
+      },
+    };
+    
+    // 이제 의도한 대로 동작합니다!
+    for (let num of range) {
+      alert(num); // 1, then 2, 3, 4, 5
+    }
+    ```
+
+- 문자열은 이터러블 하다.
+
+- 이터러블은 메서드`Symbol.iterator`가 구현되어있습니다.
+
+  - 유사배열은 인덱스와 `length`프로퍼티가 있어서 배열처럼 보이는 객체입니다.
+
+  - ```js
+    // 유사 배열 객체
+    let arrayLike = { // 인덱스와 length프로퍼티가 있음 => 유사 배열
+      0: "Hello",
+      1: "World",
+      length: 2
+    };
+    // Symbol.iterator가 없으므로 에러 발생
+    for (let item of arrayLike) {}
+    ```
+
+  - 문자열은 이터러블 하면서 유사배열이다.
+
+- 이터러블과 유사배열은 배열이 아니기 때문에 배열메소드(`pop`같은거)를 사용하지 못합니다.
+
+  - `Array.from(obj[, mapFn, thisArg])`을 통해서 배열로 만들어줍니다.
+
+    - `mapFn`으로 요소를 추가하기전 함수를 적용할 수 있습니다.
+
+    - ```js
+      // 각 숫자를 제곱
+      let arr = Array.from(range, num => num * num);
+      alert(arr); // 1,4,9,16,25
+      ```
+
+      
+
+------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
