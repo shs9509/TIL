@@ -1086,7 +1086,7 @@ describe("pow", function() { //describe 첫 인수 - 구현하는 기능(title),
   - 배열 중간에 비어있어도 큰값이 나온다는 것
   - 특이한 점은 쓰기가 가능하다는 점 줄이면 배열이 잘리고 늘리면 아무일 안일어남
 - 배열만드는데 `new Array(number)`도 있는데 숫자에 맞춰서 요소가없는 길이는 있는 배열이 생성됨, 잘모르면 `[]`를 쓰자
-- 배열에는 `toString`이 구현되어있어서 출려갛면 문자열이 나옵니다.
+- 배열에는 `toString`이 구현되어있어서 출력하려면 문자열이 나옵니다.
 
 
 
@@ -1253,9 +1253,10 @@ describe("pow", function() { //describe 첫 인수 - 구현하는 기능(title),
 
   - 이터러블로 만들려면 `Symbol.iterator` 메서드를 추가해야한다.
   - `for of`의 경우 시작시`Symbol.iterator` 를 호출 하기 때문, 없으면 에러를 출력한다.
+    
     - 다음에는 `next()`를 호출한다. `next()`의 반환값은  `{done: Boolean, value: any}`다.
       - `done`이 `true`면 끝났다는 말
-
+    
   - ```js
     let range = {
       from: 1,
@@ -1279,7 +1280,7 @@ describe("pow", function() { //describe 첫 인수 - 구현하는 기능(title),
       alert(num); // 1, then 2, 3, 4, 5
     }
     ```
-
+  
 - 문자열은 이터러블 하다.
 
 - 이터러블은 메서드`Symbol.iterator`가 구현되어있습니다.
@@ -1444,7 +1445,7 @@ describe("pow", function() { //describe 첫 인수 - 구현하는 기능(title),
 
 
 
-`Map` `Set` `Array`에 적용이가능합니다.
+- 일반 객체 순회 메서드
 
 ```js
 let user = {
@@ -1486,3 +1487,154 @@ let user = {
 
       
 
+-------
+
+
+
+- 객체나 배열을 분해할수 있는 문법인 구조 분해 할당 이라는 것이 있습니다.
+
+  - ```js
+    // 이름과 성을 요소로 가진 배열
+    let arr = ["Bora", "Lee"]
+    
+    // 구조 분해 할당을 이용해
+    // firstName엔 arr[0]을
+    // surname엔 arr[1]을 할당하였습니다.
+    let [firstName, surname] = arr;
+    
+    alert(firstName); // Bora
+    alert(surname);  // Lee
+    ```
+
+- 쉼표를 통해서 중간의 요소를 생략할 수 있습니다.
+
+  - ```js
+    // 두 번째 요소는 필요하지 않음
+    let [firstName, , title] = ["Julius", "Caesar", "Consul", "of the Roman Republic"];
+    
+    alert( title ); // Consul
+    ```
+
+- 할당 연산자 우측엔 모든 이터러블이 올 수 있습니다.
+
+  - 좌측에는 할당할 수 있는거라면 뭐든지 올수 있습니다.
+
+- 순회에도 사용가능합니다.
+
+  - ```js
+    let user = {
+      name: "John",
+      age: 30
+    };
+    
+    // 객체의 키와 값 순회하기
+    for (let [key, value] of Object.entries(user)) {
+      alert(`${key}:${value}`); // name:John, age:30이 차례대로 출력
+    }
+    
+    ```
+
+  - ```js
+    let user = new Map();
+    user.set("name", "John");
+    user.set("age", "30");
+    
+    for (let [key, value] of user) {
+      alert(`${key}:${value}`); // name:John, then age:30
+    }
+    ```
+
+- 변수 교환이 가능합니다.
+
+  - ```js
+    let guest = "Jane";
+    let admin = "Pete";
+    // 변수 guest엔 Pete, 변수 admin엔 Jane이 저장되도록 값을 교환함
+    [guest, admin] = [admin, guest];
+    ```
+
+- `...`으로 나머지 요소들을 가져올 수 있습니다. (가장 마지막에 있어야합니다.)
+
+  - ```js
+    let [name1, name2, ...rest] = ["Julius", "Caesar", "Consul", "of the Roman Republic"];
+    
+    alert(name1); // Julius
+    alert(name2); // Caesar
+    
+    // `rest`는 배열입니다.
+    alert(rest[0]); // Consul
+    alert(rest[1]); // of the Roman Republic
+    alert(rest.length); // 2
+    ```
+
+- 값이 없다면 `undefined`로 정해지면 미리 기본값을 설정할 수 있습니다.
+
+  - ```js
+    // 기본값
+    let [name = "Guest", surname = "Anonymous"] = ["Julius"];
+    ```
+
+  - 기본값으로 함수도 할당될 수  있습니다. (표현식의 경우 유용)
+
+- 객체 역시 분해가 가능합니다.
+
+  - ```js
+    let options = {
+      title: "Menu",
+      width: 100,
+      height: 200
+    };
+    let {title, width, height} = options; //순서가 바뀌어도 결과는 값습니다.
+    alert(title);  // Menu
+    
+    let {width: w, height: h=300, title=200} = options;
+    alert(width); // 안먹힘
+    alert(h);      // 200
+    ```
+
+- 주의해야할 점
+
+  - ```js
+    let title, width, height;
+    
+    // ()로 감싸주지않으면 {}를 코드블럭으로 인식해서 에러가 발생합니다.
+    ({title, width, height} = {title: "Menu", width: 200, height: 100});
+    
+    alert( title ); // Menu
+    ```
+
+- 구조 분해는 함수의 복잡한 매개변수를 정리하는데 잘쓰인다
+
+  - ```js
+    let options = {
+      title: "My menu",
+      items: ["Item1", "Item2"]
+    };
+    
+    function showMenu({
+      title = "Untitled",
+      width: w = 100,  // width는 w에,
+      height: h = 200, // height는 h에,
+      items: [item1, item2] // items의 첫 번째 요소는 item1에, 두 번째 요소는 item2에 할당함
+    }) {
+      alert( `${title} ${w} ${h}` ); // My Menu 100 200
+      alert( item1 ); // Item1
+      alert( item2 ); // Item2
+    }
+    
+    showMenu(options);
+    
+    
+    ```
+
+  - 기본값 설정 방법
+
+    - ```js
+      function showMenu({ title = "Menu", width = 100, height = 200 } = {}) {
+        alert( `${title} ${width} ${height}` );
+      }
+      
+      showMenu(); // Menu 100 200
+      ```
+
+      
