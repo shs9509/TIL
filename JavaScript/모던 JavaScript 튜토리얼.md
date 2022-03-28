@@ -1638,3 +1638,224 @@ let user = {
       ```
 
       
+
+-------
+
+
+
+## Date 객체와 날짜 
+
+Date객체는 날짜생성, 수정, 시간 측정 등등 시간에 관련한 용도로 사용할 수 있습니다.
+
+
+
+- `new Date()` 
+  - 인수가 없다면 현재 날짜와 시간이 반환됩니다.
+  - `Mon Mar 28 2022 21:49:31 GMT+0900 (한국 표준시)`\
+- `new Date(milliseconds)`
+  - UTC 기준(UTC+0) 1970년 1월 1일 0시 0분 0초에서 `milliseconds` 밀리초(1/1000 초) 후의 시점
+  - 1970년 기준으로 흘러간 밀리초의 정수를 `타임스탬프`라고 합니다.
+
+- `new Date(datestring)`
+  - 문자열을 넣게 되면 자동으로 구문 분석이 됩니다.
+- `new Date(year, month, date, hours, minutes, seconds, ms)` 
+  - 주어진 인수로 조합되어서 나타납니다.
+    - `year`는 반드시 네 자리 숫자여야 합니다. `2013`은 괜찮고 `98`은 괜찮지 않습니다.
+    - `month`는 `0`(1월)부터 `11`(12월) 사이의 숫자여야 합니다.
+    - `date`는 일을 나타내는데, 값이 없는 경우엔 1일로 처리됩니다.
+    - `hours/minutes/seconds/ms`에 값이 없는 경우엔 `0`으로 처리됩니다.
+
+- `getFullYear()`
+  - 연도(네 자릿수)를 반환합니다.
+  - `getYear()`도 있지만 두 자리수를 반환할 수 있기 때문에 쓰면 안됩니다. 
+
+- `getMonth()`
+  - 월을 반환합니다(**0 이상 11 이하**).
+
+- `getDate()`
+  - 일을 반환합니다(1 이상 31 이하). 어! 그런데 메서드 이름이 뭔가 이상하네요.
+
+- `getHours()`, `getMinutes()`, `getSeconds()`, `getMilliseconds()`
+  - 시, 분, 초, 밀리초를 반환합니다.
+
+- `getDay()`
+  - 요일을 반환 합니다. ( 0: 일요일 1:월요일 ... 6: 토요일)
+- 위 메소드들은 현지의 값으로 나타냅니다.
+  -  `get` 옆에 `UTC` 같은걸 써줌으로서 바꿀수 있습니다.
+
+- `getTime()`
+  - 주어진 일시와 1970년 1월 1일 00시 00분 00초 사이의 간격(밀리초 단위)인 타임스탬프를 반환합니다.
+
+- `getTimezoneOffset()`
+  - 현지 시간과 표준 시간의 차이(분)를 반환합니다.
+
+- 날짜 구성요소를 설정할 수 있습니다.
+
+  - [`setFullYear(year, [month\], [date])`](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Date/setFullYear)
+
+  - [`setMonth(month, [date\])`](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Date/setMonth)
+
+  - [`setDate(date)`](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Date/setDate)
+
+  - [`setHours(hour, [min\], [sec], [ms])`](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Date/setHours)
+
+  - [`setMinutes(min, [sec\], [ms])`](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Date/setMinutes)
+
+  - [`setSeconds(sec, [ms\])`](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Date/setSeconds)
+
+  - [`setMilliseconds(ms)`](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Date/setMilliseconds)
+
+  - [`setTime(milliseconds)`](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Date/setTime) 
+    - 1970년 1월 1일 00:00:00 UTC부터 밀리초 이후를 나타내는 날짜를 설정
+
+- `date` 객체는 날짜범위를 넘어가면 자동으로 고쳐집니다. 
+
+  - 초과되면 다음 시간으로 넘어 갑니다.
+
+- 숫자로 형변환을 하면 타임스탬프로 변합니다.
+
+  - ```js
+    let date = new Date();
+    alert(date); 
+    //Mon Mar 28 2022 22:03:05 GMT+0900 (한국 표준시)
+    alert(+date); // 타임스탬프(date.getTime()를 호출한 것과 동일함)
+    //1648472602908
+    ```
+
+- `Date`객체를 만들지 않고 `Date.now()`를 사용하면 시차를 측정가능합니다.
+
+  - 타임스탬프를 반환합니다.
+
+  - 객체를 안만들기 때문에 가비지 컬렉터의 일을 도와줍니다.
+
+  -  ```js
+    let start = Date.now(); // 1970년 1월 1일부터 현재까지의 밀리초
+    // 원하는 작업을 수행
+    for (let i = 0; i < 100000; i++) {
+      let doSomething = i * i * i;
+    }
+    let end = Date.now(); // done
+    alert( `반복문을 모두 도는데 ${end - start} 밀리초가 걸렸습니다.` ); // Date 객체가 아닌 숫자끼리 차감함
+    ```
+
+- `Date.parse(str)`
+
+  - 문자열에서 날짜를 읽어올 수 있습니다.
+
+  - 문자열의 형식은 `YYYY-MM-DDTHH:mm:ss.sssZ`처럼 생겨야 합니다.
+
+    - `YYYY-MM-DD` – 날짜(연-월-일)
+
+    - `"T"` – 구분 기호로 쓰임
+
+    - `HH:mm:ss.sss` – 시:분:초.밀리초
+
+    - `'Z'`(옵션) – `+-hh:mm` 형식의 시간대를 나타냄. `Z` 한 글자인 경우엔 UTC+0을 나타냄
+
+    - `YYYY-MM-DD`, `YYYY-MM`, `YYYY`같이 더 짧은 문자열 형식도 가능합니다.
+
+  - 형식이 맞지 않으면 `NaN` 을 출력합니다.
+
+-----
+
+## JSON과 메서드
+
+
+
+- 객체 데이터를 네트워크를 통해서 넘겨주려면 문자열로 변환해야합니다.
+
+  - `toString`을 쓸수 있지만 수정을 해야된다면? 상당히 까다롭습니다.
+
+- JSON은 값이나 객체를 나타내주는 범용 포맷입니다.
+
+  - 자바스크립트에서 사용할 목적으로 만들어졌습니다.
+
+  - JSON을 데이터 교환 목적을 사용하는 경우가 많습니다.
+
+  - `JSON.stringify` 
+
+    - 객체를 JSON으로 바꿔줍니다.
+    - 원시값에도 적용이 가능합니다.
+    - 반영이 안되는 프로퍼티도 있습니다.
+      - 함수 프로퍼티
+      - 심볼형 프로퍼티
+      - 값이 `undefined`인 프로퍼티
+      - 대부분 무시되어도 됩니다.
+    - 순환 참조는 문자열로 바꾸지 못합니다.
+
+  - `JSON.parse`
+
+    - JSON을 객체로 바꿔줍니다.
+
+    - ```js
+      let value = JSON.parse(str, [reviver]);
+      ```
+
+      - str
+        - JSON 형식의 문자열
+      - reviver
+        - 모든 `(key, value)` 쌍을 대상으로 호출되는 function(key,value) 형태의 함수로 값을 변경시킬 수 있습니다.
+
+```js
+let student = {
+  name: 'John',
+  age: 30,
+  isAdmin: false,
+  courses: ['html', 'css', 'js'],
+  wife: null
+};
+
+let json = JSON.stringify(student);
+
+alert(typeof json); // 문자열이네요!
+
+alert(json);
+/* JSON으로 인코딩된 객체:
+{
+  "name": "John",
+  "age": 30,
+  "isAdmin": false,
+  "courses": ["html", "css", "js"],
+  "wife": null
+}
+*/
+```
+
+- JOSN 통해 인코딩 된 객체는
+  - 문자열은 큰따옴표로 감싸야합니다. 
+
+
+
+- ```js
+  let json = JSON.stringify(value[, replacer, space])
+  ```
+
+  - `replacer`를 쓰면 원하는 프로퍼티만 직렬화가 가능합니다.
+    - JSON으로 인코딩 하길 원하는 프로퍼티가 담긴 배열.
+    - 매핑 함수 `function(key, value)`
+  - `space`에 숫자를 넣어주면 값만은 객체를 별도에 줄에 출력하고 공백은 2개 띄웁니다.(들여쓰기)
+    - 가독성을 높여줍니다.
+
+- 객체에 `toJSON` 메소드가 있으면 `JSON.stringify` 가 실행시 자동으로 호출해줍니다.
+
+  - ```js
+    let room = {
+      number: 23
+    };
+    
+    let meetup = {
+      title: "Conference",
+      date: new Date(Date.UTC(2017, 0, 1)),
+      room
+    };
+    
+    alert( JSON.stringify(meetup) );
+    /*
+      {
+        "title":"Conference",
+        "date":"2017-01-01T00:00:00.000Z",  // (1)
+        "room": {"number":23}               // (2)
+      }
+    */
+    ```
+
