@@ -177,3 +177,41 @@ git log --graph
   A 브랜치에서 add/commit/push
 
   둘 다 반영 ok
+
+
+
+
+
+## rebase
+
+`rebase`는 말 그대로 (re-base)로 베이스를 재배치한다는 뜻입니다.
+
+`merge`를 사용하면 히스토리를 볼 때 뿌리가 여러개로 나눠져 있어서 히스토리를 찾아갈 때 보기가 어렵습니다.
+
+`rebase`는 베이스를 다시 정의함으로써 새롭게 커밋 라인을 정리하여 히스토리를 깔끔하게 볼 수 있게 해줍니다.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-----
+
+rebase : https://musma.github.io/2019/06/14/git-study.html
