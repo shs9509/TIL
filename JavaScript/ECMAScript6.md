@@ -262,7 +262,7 @@ mystatus({});
 
 
 
-![image-20210823023705844](ECMAScript6.assets/image-20210823023705844.png)
+![image-20210823023705844](이미지/image-20210823023705844.png)
 
 
 
