@@ -1,7 +1,5 @@
 # 프라미스와 async, await
 
-
-
 ## 콜백
 
 자바스크립트 호스트 환경이 제공하는 여러 함수를 사용하면 *비동기(asynchronous)* 동작을 스케줄링 할 수 있습니다. 원하는 때에 동작이 시작하도록 할 수 있죠.
@@ -123,6 +121,8 @@ new Promise(function(resolve, reject) {
 ### fetch와 체이닝 응용하기
 
 네트워크 요청시 프라미스를 자주사용합니다.
+
+- `fetch`는 프라미스를반환합니다.
 
 ```js
 // user.json에 요청을 보냅니다.
@@ -374,8 +374,150 @@ loadScriptPromise(...).then(...);
 
 
 
-## 마이크로테스트
+## 마이크로태스크 큐
+
+- 마이크로태스크 큐는 먼저 들어온 작업을 먼저 실행합니다.
+- 실행할것이 없다면 큐에 있는 작업이 실행됩니다.
+
+그래서 프라미스 핸들러 `.then/catch/finally`는 항상 비동기적으로 실행됩니다.
+
+- 자바스크립트 엔진에서  `unhandledrejection` 이벤트는 마이크로 태스크 큐에서 프라미스 에러가 처리되지 못할 때 발생합니다.
+
+```js
+let promise = Promise.reject(new Error("프라미스 실패!"));
+setTimeout(() => promise.catch(err => alert('잡았다!')), 1000);
+
+// Error: 프라미스 실패!
+window.addEventListener('unhandledrejection', event => alert(event.reason));
+```
+
+이코드는 1초안에 프라미스 실패가 되고 잡았다가 진행됨.
+
+마이크로태스크 큐를 검사했는데 없으니깐!
+
+
+
+![Thumbnail](프라미스와 async, await.assets/9466d8aa53fc5b3e63a92858a94bb429df02bbd20012b738f0461343beaa6f90.gif)
+
+> https://disq.us/url?url=https%3A%2F%2Fdev.to%2Flydiahallie%2Fjavascript-visualized-promises-async-await-5gke%3Ffbclid%3DIwAR3cfIk3iVpt1EoFOflRVs4VFe6GC2m2nbkP99bWgSduAkxVCIFSXVgKYzE%3AYqZ7z7fktoQCXFrGfzXq9FIb9PA&cuid=5924144
 
 
 
 ## async 와 await
+
+`async`와 `await`라는 특별한 문법을 사용하면 프라미스를 좀 더 편하게 사용할 수 있습니다.
+
+### async
+
+- `async`는 함수가 프라미스를 반환하도록 만듭니다. 
+
+- 프라미스가 아니여도 이행 상태의 프라미스(resolved promise)로 값을 감싸 이행된 프라미스가 반환되도록 합니다.
+
+  ```js
+  async function f() {
+    return 1;
+  }
+  async function f() {
+    return Promise.resolve(1);
+  }
+  f().then(alert); // 1
+  ```
+
+### await
+
+```js
+async function f() {
+  let promise = new Promise((resolve, reject) => {
+    setTimeout(() => resolve("완료!"), 1000)
+  });
+  let result = await promise; // 프라미스가 이행될 때까지 기다림 (*)
+  alert(result); // "완료!"
+}
+f();
+```
+
+- `await`은 `async` 함수 안에서만 동작합니다.
+- `await`을 만나면 프라미스가 처리될 때까지 기다립니다.
+- 이는 `.then`보다 가독성좋게 프라미스 값을 얻을 수 있습니다.
+
+
+
+1. 먼저 `.then` 호출을 `await`로 바꿔야 합니다.
+
+2. function 앞에 `async`를 붙여 `await`를 사용할 수 있도록 해야 합니다.
+
+   ```js
+   async function showAvatar() {
+   
+     // JSON 읽기
+     let response = await fetch('/article/promise-chaining/user.json');
+     let user = await response.json();
+   
+     // github 사용자 정보 읽기
+     let githubResponse = await fetch(`https://api.github.com/users/${user.name}`);
+     let githubUser = await githubResponse.json();
+   
+     // 아바타 보여주기
+     let img = document.createElement('img');
+     img.src = githubUser.avatar_url;
+     img.className = "promise-avatar-example";
+     document.body.append(img);
+   
+     // 3초 대기
+     await new Promise((resolve, reject) => setTimeout(resolve, 3000));
+   
+     img.remove();
+   
+     return githubUser;
+   }
+   
+   showAvatar();
+   ```
+
+### 에러핸들링
+
+```js
+async function f() {
+  await Promise.reject(new Error("에러 발생!"));
+}
+async function f() {
+  throw new Error("에러 발생!");
+}
+//같습니다.
+```
+
+- `try..catch`를 통해서 다룹니다.
+
+  ```js
+  async function f() {
+  
+    try {
+      let response = await fetch('http://유효하지-않은-주소');
+    } catch(err) {
+      alert(err); // TypeError: failed to fetch
+    }
+  }
+  f();
+  // 이렇게도 처리가능
+  async function f() {
+    let response = await fetch('http://유효하지-않은-url');
+  }
+  // f()는 거부 상태의 프라미스가 됩니다.
+  f().catch(alert); // TypeError: failed to fetch // (*)
+  ```
+
+- 장점은  `.catch` 대신 일반 `try..catch`를 사용할 수 있다는 점
+
+- 더 편함점
+
+- ```js
+  // 프라미스 처리 결과가 담긴 배열을 기다립니다.
+  let results = await Promise.all([
+    fetch(url1),
+    fetch(url2),
+    ...
+  ]);
+  ```
+
+
+
